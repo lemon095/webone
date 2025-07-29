@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html style="font-size: 52px;">
+
+<head>
+  <meta charset="utf-8">
+  <title>少御萝宝宝&amp;秘密花园</title>
+  <link rel="shortcut icon" href="./img/anquan.svg">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="mobileoptimized" content="240">
+  <meta name="viewport"
+    content="width=device-width=1.0; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+  <link rel="stylesheet" type="text/css" href="./css/m.css">
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/font.js"></script>
+  <style>
+    .toast {
+      position: fixed;
+      width: calc(7.5rem - 20px);
+      top: -40px;
+      left: calc(50% - 3.75rem + 10px);
+      background: rgba(0, 0, 0, .5);
+      border-radius: 20px
+    }
+
+    .toast-item {
+      display: none;
+      font-size: 14px;
+      letter-spacing: 2px;
+      padding: 8px 15px;
+      color: #fff;
+      text-align: center
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        top: -20px
+      }
+
+      60% {
+        opacity: 1;
+        top: 20px
+      }
+
+      80% {
+        opacity: 1;
+        top: 20px
+      }
+
+      100% {
+        opacity: 0;
+        top: 30px
+      }
+    }
+
+    .fadeIn {
+      animation: fadeIns infinite
+    }
+
+    .pay-mask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 999
+    }
+
+    .pay-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 85%;
+      max-width: 320px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      z-index: 1000;
+      display: none
+    }
+
+    .pay-title {
+      font-size: 18px;
+      color: #333;
+      font-weight: 500;
+      margin-bottom: 20px;
+      padding-left: 8px;
+      border-left: 4px solid #1677ff
+    }
+
+    .pay-options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px
+    }
+
+    .pay-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f8f9fa;
+      transition: all 0.2s;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .pay-item:hover {
+      background: #e9ecef
+    }
+
+    .pay-icon {
+      width: 32px;
+      height: 32px;
+      margin-right: 15px
+    }
+
+    .pay-text {
+      font-size: 16px;
+      color: #333;
+      font-weight: 500
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 24px;
+      height: 24px;
+      opacity: 0.6;
+      cursor: pointer
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999
+    }
+
+    .modal-container {
+      position: fixed;
+      top: 40%;
+      left: 10%;
+      right: 10%;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      transform: translateY(-30%)
+    }
+
+    .icon-wrapper {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #ebeef0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgb(200 154 154 / 20%)
+    }
+
+    .icon-wrapper img {
+      width: 40px;
+      height: 40px
+    }
+
+    .modal-contents {
+      text-align: center;
+      padding: 20px 0
+    }
+
+    h2 {
+      margin: 5px 0;
+      color: #e04242;
+      font-size: 1em;
+      margin-bottom: 20px
+    }
+
+    p {
+      color: #666;
+      line-height: 1.6
+    }
+
+    .confirm-btn {
+      background: #2196F3;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s
+    }
+
+    .confirm-btn:hover {
+      background: #1976D2
+    }
+  </style>
+
+  <myflashextensionid id="pkomojeklgbndilokjedodpebdbekiod"></myflashextensionid>
+</head>
+
+<body>
+
+  <div class="wrap">
+    <img src="" style="margin-bottom: 0.35rem;">
+    <img src="./img/d7e988ee4cfbc9c746937d452485a6c8.jpg" alt="" class="qtx">
+    <p class="nameQun">小网红少萝宝宝们&amp;秘密花园</p>
+    <p class="deQun"><span style="color:#ba57a5;font-weight:+600">每日圈内更新</span><br>
+      <span style="color:#6757ba;font-weight:+600">圈内支持私聊，线下发展</span>
+    </p>
+    <div class="clear"></div>
+    <div class="bd"></div><!--横线-->
+    <p>合作萝莉御姐の部分展示<i>(一次付费永久享受)</i></p>
+    <div class="aa">众多小网红萝莉御姐！VIP入会制，可选妃cp，多地区同城，接现下，私人定制 ~</div>
+    <video src="./img/07462e7f90f97180ca3dd430507d01cc.mp4" controls="" autoplay="autoplay"
+      poster="./img/67d4d5f89b37249c6ff7aebddc16b421.jpg" width="100%" class="vi">您的浏览器不支持 video
+      标签.</video>
+    <div class="bd"></div>
+    <p>萝御主播们の私房部分展示↓<i>(↓入圈选妃必看)</i></p>
+    <div class="aa">萌萝御姐宝宝们の自录＋私房秘照展示区 ↓ 每日更新极品萝御私房秘密聚会</div>
+    <img src="./img/06555979f3fea24b836ea9567cd090ff.jpg" alt="" srcset="" class="tu1">
+    <div class="bd"></div>
+    <p>注意事项<i>( ！)</i></p>
+    <div class="aa">一旦付費，無輪何種原因概不退款包括规被请出圈的 !
+      請謹情遠摆，看好再買，圈費不多不少，嘪个信任，做付費圈避免垃圾人過滤人群，提高群質量，避免人多嘴，杜白食群，付费入圈裹能镶杜新形成正向循環，是社圈質量的保障</div>
+    <div class="bd"></div>
+    <p>付费后如何圈？<i>(一定要看!!!)</i></p>
+    <div class="aa">请您付费后再次扫码即可进群!!! 如果付费后出现问题可以联系客服，客服拉你入圈。感谢配合！</div>
+    <div class="bd"></div>
+    <div class="aa">阅读189674</div>
+    <div class="sca">
+      <div class="fl">
+        <ul class="fxsc">
+          <li>
+            <svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="776">
+              <path
+                d="M576.02048 114.31936 973.70112 512 576.02048 909.68064 576.02048 694.4768c-12.8-0.75776-27.2384-1.25952-43.12064-1.25952-115.6096 0-306.5856 26.69568-482.60096 173.80352 0 0 60.8256-423.30112 525.7216-510.1568L576.02048 114.31936M576 65.09568c-6.32832 0-12.72832 1.2288-18.82112 3.74784-18.39104 7.61856-30.39232 25.56928-30.39232 45.47584l0 202.67008c-232.192 55.18336-361.3696 192.6656-429.64992 301.33248C19.16928 742.42048 2.26304 855.25504 1.57696 860.01664c-2.89792 20.18304 6.94272 40.05888 24.75008 49.98144 7.48544 4.17792 15.74912 6.23616 23.9616 6.23616 11.30496 0 22.51776-3.88096 31.56992-11.45856 157.78816-131.86048 327.91552-161.34144 444.928-162.304l0 167.19872c0 19.9168 12.00128 37.85728 30.39232 45.47584 6.0928 2.51904 12.4928 3.7376 18.82112 3.7376 12.82048 0 25.40544-4.99712 34.82624-14.41792l397.68064-397.68064c9.22624-9.216 14.41792-21.73952 14.41792-34.79552 0-13.056-5.19168-25.57952-14.41792-34.80576L610.82624 79.5136C601.40544 70.0928 588.82048 65.09568 576 65.09568L576 65.09568z"
+                p-id="777"></path>
+            </svg><br>
+            <i>分享</i>
+          </li>
+          <li>
+            <svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="743">
+              <path
+                d="M520.914 502.712c-4.557 0-9.119-1.05-13.307-3.015L98.401 303.467a30.797 30.797 0 0 1-17.5-27.79 30.797 30.797 0 0 1 17.5-27.797L507.612 51.656c8.5-4.004 18.36-4.066 26.798 0.061l403.856 196.224a30.75 30.75 0 0 1 17.305 27.735 30.822 30.822 0 0 1-17.305 27.73L534.354 499.564a30.024 30.024 0 0 1-13.44 3.148z m-337.9-227.036l337.844 161.956 333.399-161.956-333.4-161.96-337.843 161.96z m337.9 693.489a31.094 31.094 0 0 1-13.435-3.082l-403.84-196.214a30.812 30.812 0 0 1-14.234-41.232 30.792 30.792 0 0 1 41.17-14.238L520.92 904.084 911.268 714.4c15.35-7.332 33.776-0.988 41.236 14.238 7.383 15.345 1.04 33.772-14.238 41.232l-403.85 196.214c-4.25 2.099-8.874 3.082-13.502 3.082zM924.575 763.945a30.822 30.822 0 0 1-30.818-30.807V281.037a30.822 30.822 0 0 1 61.64 0v452.106a30.787 30.787 0 0 1-30.822 30.802z m-816.558 3.569A30.822 30.822 0 0 1 77.199 736.7V281.037a30.828 30.828 0 0 1 30.818-30.812 30.822 30.822 0 0 1 30.812 30.812v455.67a30.822 30.822 0 0 1-30.812 30.807z m439.137 163.445H484.75V474.04h62.429l-0.026 456.92z"
+                p-id="744"></path>
+            </svg><br>
+            <i>收藏</i>
+          </li>
+        </ul>
+      </div>
+      <div class="fr">
+        <ul class="fxsc">
+          <li>
+            <svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="765">
+              <path
+                d="M832 364.8h-147.2s19.2-64 32-179.2c6.4-57.6-38.4-115.2-102.4-121.6h-12.8c-51.2 0-83.2 32-102.4 76.8l-38.4 96c-32 64-57.6 102.4-76.8 115.2-25.6 12.8-121.6 12.8-128 12.8H128c-38.4 0-64 25.6-64 57.6v480c0 32 25.6 57.6 64 57.6h646.4c96 0 121.6-64 134.4-153.6l51.2-307.2c6.4-70.4-6.4-134.4-128-134.4z m-576 537.6H128V422.4h128v480z m640-409.6l-51.2 307.2c-12.8 57.6-12.8 102.4-76.8 102.4H320V422.4c44.8 0 70.4-6.4 89.6-19.2 32-12.8 64-64 108.8-147.2 25.6-64 38.4-96 44.8-102.4 6.4-19.2 19.2-32 44.8-32h6.4c32 0 44.8 32 44.8 51.2-12.8 102.4-32 166.4-32 166.4l-25.6 83.2h243.2c19.2 0 32 0 44.8 12.8 12.8 12.8 6.4 38.4 6.4 57.6z"
+                p-id="766"></path>
+            </svg><br>
+            <i>68743</i>
+          </li>
+          <li>
+            <svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="776">
+              <path
+                d="M576.02048 114.31936 973.70112 512 576.02048 909.68064 576.02048 694.4768c-12.8-0.75776-27.2384-1.25952-43.12064-1.25952-115.6096 0-306.5856 26.69568-482.60096 173.80352 0 0 60.8256-423.30112 525.7216-510.1568L576.02048 114.31936M576 65.09568c-6.32832 0-12.72832 1.2288-18.82112 3.74784-18.39104 7.61856-30.39232 25.56928-30.39232 45.47584l0 202.67008c-232.192 55.18336-361.3696 192.6656-429.64992 301.33248C19.16928 742.42048 2.26304 855.25504 1.57696 860.01664c-2.89792 20.18304 6.94272 40.05888 24.75008 49.98144 7.48544 4.17792 15.74912 6.23616 23.9616 6.23616 11.30496 0 22.51776-3.88096 31.56992-11.45856 157.78816-131.86048 327.91552-161.34144 444.928-162.304l0 167.19872c0 19.9168 12.00128 37.85728 30.39232 45.47584 6.0928 2.51904 12.4928 3.7376 18.82112 3.7376 12.82048 0 25.40544-4.99712 34.82624-14.41792l397.68064-397.68064c9.22624-9.216 14.41792-21.73952 14.41792-34.79552 0-13.056-5.19168-25.57952-14.41792-34.80576L610.82624 79.5136C601.40544 70.0928 588.82048 65.09568 576 65.09568L576 65.09568z"
+                p-id="777"></path>
+            </svg><br>
+            <i>23324</i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="qypj">
+    <p class="tit">
+      <span class="fl"></span>
+      <span class="fr">写评论</span>
+    </p>
+    <div class="liua">
+      <img src="./img/9b63f2f6bf59e8bf23fd508b2b196835.jpg" alt="" class="txa">
+      <div class="lytop">
+        <div class="lytit">
+          <div class="fl">n-jackson<i>IP:河南</i></div>
+          <div class="fr"><svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="765">
+              <path
+                d="M832 364.8h-147.2s19.2-64 32-179.2c6.4-57.6-38.4-115.2-102.4-121.6h-12.8c-51.2 0-83.2 32-102.4 76.8l-38.4 96c-32 64-57.6 102.4-76.8 115.2-25.6 12.8-121.6 12.8-128 12.8H128c-38.4 0-64 25.6-64 57.6v480c0 32 25.6 57.6 64 57.6h646.4c96 0 121.6-64 134.4-153.6l51.2-307.2c6.4-70.4-6.4-134.4-128-134.4z m-576 537.6H128V422.4h128v480z m640-409.6l-51.2 307.2c-12.8 57.6-12.8 102.4-76.8 102.4H320V422.4c44.8 0 70.4-6.4 89.6-19.2 32-12.8 64-64 108.8-147.2 25.6-64 38.4-96 44.8-102.4 6.4-19.2 19.2-32 44.8-32h6.4c32 0 44.8 32 44.8 51.2-12.8 102.4-32 166.4-32 166.4l-25.6 83.2h243.2c19.2 0 32 0 44.8 12.8 12.8 12.8 6.4 38.4 6.4 57.6z"
+                p-id="766"></path>
+            </svg><i>198</i></div>
+        </div>
+        <p class="hfword">我是真没想到，一直关注的这些萝莉主播网红背地里玩这么...太棒了，更喜欢了！</p>
+
+        <div class="hf lytit">
+          <img src="./img/2ecd2e1a37aab17b0a31c32518eb3c2d.jpg" alt="" srcset="" class="txb">
+          <div class="fl">本叔（圈主）</div>
+          <div class="fr"><svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="765">
+              <path
+                d="M832 364.8h-147.2s19.2-64 32-179.2c6.4-57.6-38.4-115.2-102.4-121.6h-12.8c-51.2 0-83.2 32-102.4 76.8l-38.4 96c-32 64-57.6 102.4-76.8 115.2-25.6 12.8-121.6 12.8-128 12.8H128c-38.4 0-64 25.6-64 57.6v480c0 32 25.6 57.6 64 57.6h646.4c96 0 121.6-64 134.4-153.6l51.2-307.2c6.4-70.4-6.4-134.4-128-134.4z m-576 537.6H128V422.4h128v480z m640-409.6l-51.2 307.2c-12.8 57.6-12.8 102.4-76.8 102.4H320V422.4c44.8 0 70.4-6.4 89.6-19.2 32-12.8 64-64 108.8-147.2 25.6-64 38.4-96 44.8-102.4 6.4-19.2 19.2-32 44.8-32h6.4c32 0 44.8 32 44.8 51.2-12.8 102.4-32 166.4-32 166.4l-25.6 83.2h243.2c19.2 0 32 0 44.8 12.8 12.8 12.8 6.4 38.4 6.4 57.6z"
+                p-id="766"></path>
+            </svg><i>396</i></div>
+          <p class="hfword hfword-b">每日更新不迷路</p>
+        </div>
+
+      </div>
+    </div>
+    <div class="liua">
+      <img src="./img/c6b859d466eead99c7ee2a69f33d2558.jpg" alt="" class="txa">
+      <div class="lytop">
+        <div class="lytit">
+          <div class="fl">洛洛<i>IP:北京</i></div>
+          <div class="fr"><svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="765">
+              <path
+                d="M832 364.8h-147.2s19.2-64 32-179.2c6.4-57.6-38.4-115.2-102.4-121.6h-12.8c-51.2 0-83.2 32-102.4 76.8l-38.4 96c-32 64-57.6 102.4-76.8 115.2-25.6 12.8-121.6 12.8-128 12.8H128c-38.4 0-64 25.6-64 57.6v480c0 32 25.6 57.6 64 57.6h646.4c96 0 121.6-64 134.4-153.6l51.2-307.2c6.4-70.4-6.4-134.4-128-134.4z m-576 537.6H128V422.4h128v480z m640-409.6l-51.2 307.2c-12.8 57.6-12.8 102.4-76.8 102.4H320V422.4c44.8 0 70.4-6.4 89.6-19.2 32-12.8 64-64 108.8-147.2 25.6-64 38.4-96 44.8-102.4 6.4-19.2 19.2-32 44.8-32h6.4c32 0 44.8 32 44.8 51.2-12.8 102.4-32 166.4-32 166.4l-25.6 83.2h243.2c19.2 0 32 0 44.8 12.8 12.8 12.8 6.4 38.4 6.4 57.6z"
+                p-id="766"></path>
+            </svg><i>698</i></div>
+        </div>
+        <p class="hfword">讲道理，就觉得主播发的作品不太对劲，原来如此，是我目光短浅了，这群进的值了！！</p>
+
+        <div class="hf lytit">
+          <img src="./img/c6b859d466eead99c7ee2a69f33d2558.jpg" alt="" srcset="" class="txb">
+          <div class="fl">本叔（圈主）</div>
+          <div class="fr"><svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="765">
+              <path
+                d="M832 364.8h-147.2s19.2-64 32-179.2c6.4-57.6-38.4-115.2-102.4-121.6h-12.8c-51.2 0-83.2 32-102.4 76.8l-38.4 96c-32 64-57.6 102.4-76.8 115.2-25.6 12.8-121.6 12.8-128 12.8H128c-38.4 0-64 25.6-64 57.6v480c0 32 25.6 57.6 64 57.6h646.4c96 0 121.6-64 134.4-153.6l51.2-307.2c6.4-70.4-6.4-134.4-128-134.4z m-576 537.6H128V422.4h128v480z m640-409.6l-51.2 307.2c-12.8 57.6-12.8 102.4-76.8 102.4H320V422.4c44.8 0 70.4-6.4 89.6-19.2 32-12.8 64-64 108.8-147.2 25.6-64 38.4-96 44.8-102.4 6.4-19.2 19.2-32 44.8-32h6.4c32 0 44.8 32 44.8 51.2-12.8 102.4-32 166.4-32 166.4l-25.6 83.2h243.2c19.2 0 32 0 44.8 12.8 12.8 12.8 6.4 38.4 6.4 57.6z"
+                p-id="766"></path>
+            </svg><i>254</i></div>
+          <p class="hfword hfword-b">感谢品尝~欢迎持续关注</p>
+        </div>
+
+      </div>
+    </div>
+    <div class="liua">
+      <img src="./img/66e709f3008075769352803f53c4df00.jpg" alt="" class="txa">
+      <div class="lytop">
+        <div class="lytit">
+          <div class="fl">小新<i>IP:河北</i></div>
+          <div class="fr"><svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="765">
+              <path
+                d="M832 364.8h-147.2s19.2-64 32-179.2c6.4-57.6-38.4-115.2-102.4-121.6h-12.8c-51.2 0-83.2 32-102.4 76.8l-38.4 96c-32 64-57.6 102.4-76.8 115.2-25.6 12.8-121.6 12.8-128 12.8H128c-38.4 0-64 25.6-64 57.6v480c0 32 25.6 57.6 64 57.6h646.4c96 0 121.6-64 134.4-153.6l51.2-307.2c6.4-70.4-6.4-134.4-128-134.4z m-576 537.6H128V422.4h128v480z m640-409.6l-51.2 307.2c-12.8 57.6-12.8 102.4-76.8 102.4H320V422.4c44.8 0 70.4-6.4 89.6-19.2 32-12.8 64-64 108.8-147.2 25.6-64 38.4-96 44.8-102.4 6.4-19.2 19.2-32 44.8-32h6.4c32 0 44.8 32 44.8 51.2-12.8 102.4-32 166.4-32 166.4l-25.6 83.2h243.2c19.2 0 32 0 44.8 12.8 12.8 12.8 6.4 38.4 6.4 57.6z"
+                p-id="766"></path>
+            </svg><i>366</i></div>
+        </div>
+        <p class="hfword">正好前段时间失恋了，抱着试试的心态就加入了，小妹妹说她是在校生打兼职的，也当过服务员，是真的又乖又小巧听话，下次换一个人试试，无脑冲就是了</p>
+
+        <div class="hf lytit">
+          <img src="./img/4540fc417385375f3162f75d03bc2d49.jpg" alt="" srcset="" class="txb">
+          <div class="fl">本叔（圈主）</div>
+          <div class="fr"><svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="765">
+              <path
+                d="M832 364.8h-147.2s19.2-64 32-179.2c6.4-57.6-38.4-115.2-102.4-121.6h-12.8c-51.2 0-83.2 32-102.4 76.8l-38.4 96c-32 64-57.6 102.4-76.8 115.2-25.6 12.8-121.6 12.8-128 12.8H128c-38.4 0-64 25.6-64 57.6v480c0 32 25.6 57.6 64 57.6h646.4c96 0 121.6-64 134.4-153.6l51.2-307.2c6.4-70.4-6.4-134.4-128-134.4z m-576 537.6H128V422.4h128v480z m640-409.6l-51.2 307.2c-12.8 57.6-12.8 102.4-76.8 102.4H320V422.4c44.8 0 70.4-6.4 89.6-19.2 32-12.8 64-64 108.8-147.2 25.6-64 38.4-96 44.8-102.4 6.4-19.2 19.2-32 44.8-32h6.4c32 0 44.8 32 44.8 51.2-12.8 102.4-32 166.4-32 166.4l-25.6 83.2h243.2c19.2 0 32 0 44.8 12.8 12.8 12.8 6.4 38.4 6.4 57.6z"
+                p-id="766"></path>
+            </svg><i>91</i></div>
+          <p class="hfword hfword-b">必须的呀，专门为喜欢萝御的人，超乎的高质量</p>
+        </div>
+
+      </div>
+    </div>
+    <div class="liua">
+      <img src="./img/40d5aa8b948b222ab414d029e604297b.jpg" alt="" class="txa">
+      <div class="lytop">
+        <div class="lytit">
+          <div class="fl">消烦员<i>IP:杭州</i></div>
+          <div class="fr"><svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="765">
+              <path
+                d="M832 364.8h-147.2s19.2-64 32-179.2c6.4-57.6-38.4-115.2-102.4-121.6h-12.8c-51.2 0-83.2 32-102.4 76.8l-38.4 96c-32 64-57.6 102.4-76.8 115.2-25.6 12.8-121.6 12.8-128 12.8H128c-38.4 0-64 25.6-64 57.6v480c0 32 25.6 57.6 64 57.6h646.4c96 0 121.6-64 134.4-153.6l51.2-307.2c6.4-70.4-6.4-134.4-128-134.4z m-576 537.6H128V422.4h128v480z m640-409.6l-51.2 307.2c-12.8 57.6-12.8 102.4-76.8 102.4H320V422.4c44.8 0 70.4-6.4 89.6-19.2 32-12.8 64-64 108.8-147.2 25.6-64 38.4-96 44.8-102.4 6.4-19.2 19.2-32 44.8-32h6.4c32 0 44.8 32 44.8 51.2-12.8 102.4-32 166.4-32 166.4l-25.6 83.2h243.2c19.2 0 32 0 44.8 12.8 12.8 12.8 6.4 38.4 6.4 57.6z"
+                p-id="766"></path>
+            </svg><i>298</i></div>
+        </div>
+        <p class="hfword">完全能满足我的癖好</p>
+
+        <div class="hf lytit">
+          <img src="./img/2ba17305e7eef3f24c3984ff43668ed4.jpg" alt="" srcset="" class="txb">
+          <div class="fl">本叔（圈主）</div>
+          <div class="fr"><svg class="icon" style="vertical-align: middle;fill: currentColor;overflow: hidden;"
+              viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="765">
+              <path
+                d="M832 364.8h-147.2s19.2-64 32-179.2c6.4-57.6-38.4-115.2-102.4-121.6h-12.8c-51.2 0-83.2 32-102.4 76.8l-38.4 96c-32 64-57.6 102.4-76.8 115.2-25.6 12.8-121.6 12.8-128 12.8H128c-38.4 0-64 25.6-64 57.6v480c0 32 25.6 57.6 64 57.6h646.4c96 0 121.6-64 134.4-153.6l51.2-307.2c6.4-70.4-6.4-134.4-128-134.4z m-576 537.6H128V422.4h128v480z m640-409.6l-51.2 307.2c-12.8 57.6-12.8 102.4-76.8 102.4H320V422.4c44.8 0 70.4-6.4 89.6-19.2 32-12.8 64-64 108.8-147.2 25.6-64 38.4-96 44.8-102.4 6.4-19.2 19.2-32 44.8-32h6.4c32 0 44.8 32 44.8 51.2-12.8 102.4-32 166.4-32 166.4l-25.6 83.2h243.2c19.2 0 32 0 44.8 12.8 12.8 12.8 6.4 38.4 6.4 57.6z"
+                p-id="766"></path>
+            </svg><i>197</i></div>
+          <p class="hfword hfword-b">每日更新不迷路不迷路</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+
+
+  <a href="http://bali2.njjlq.com/index/create/index?bs=codepay&amp;cdkey=QDdoHY" class="bottom-link"
+    style="background-image: linear-gradient(to right, #fc6b2a ,#ff0000);" target="_blank">立即支付 16.6元 自助进群</a>
+
+  <div class="pay-mask" id="payMask"></div>
+  <div class="pay-dialog" id="payDialog">
+    <div class="pay-title">选择支付方式</div>
+    <div class="pay-options">
+
+      <a class="pay-item" target="_blank" href="http://bali2.njjlq.com/index/create/index?cdkey=QDdoHY&amp;bs=codepay">
+        <img src="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico" class="pay-icon">
+        <span class="pay-text">微信支付</span>
+      </a>
+      <a class="pay-item" href="http://bali2.njjlq.com/index/create/index?cdkey=QDdoHY&amp;bs=" target="_blank">
+        <img src="./img/zfb.png" class="pay-icon">
+        <span class="pay-text">支付宝支付</span>
+      </a>
+    </div>
+    <img src="./img/close.png" class="close-btn" onclick="hidePayDialog()">
+  </div>
+
+
+
+  <!--弹窗-->
+  <div class="mask-box">
+    <div class="mask-box-sm">
+      <i><img src="./img/close.png"></i>
+      <div class="mask-box-tt text-center">专属客服<br><span
+          style="letter-spacing:0.05rem;text-indent:0.05rem">长按二维码添加</span></div>
+      <div class="ewm-box"><img src=""></div>
+    </div>
+  </div>
+  <div class="toast fadeIn" id="toast">
+    <div class="toast-item" style="display: block;">盖茨***刚刚支付了16.6元</div>
+  </div>
+  <div class="modal-overlay" id="modal">
+    <div class="modal-container">
+      <div class="icon-wrapper">
+        <img src="">
+      </div>
+      <div class="modal-contents">
+        <h2></h2>
+        <p style="margin-bottom:15px"></p>
+        <button class="confirm-btn" onclick="closeModal()">确认操作</button>
+      </div>
+    </div>
+  </div>
+  <span style="display:none" id="popw">0</span>
+
+
+
+  <script>
+    var tipopen = document.getElementById("popw").innerText;
+    window.onload = function () {
+      if (tipopen == 1) {
+        document.getElementById('modal').style.display = 'block';
+      }
+    }
+
+  </script>
+  <script>
+    var t = "0";
+    var cons = ["世俗***刚刚支付了16.6元", "小樊***刚刚支付了16.6元", "乐彩***刚刚支付了16.6元", "空乘***刚刚支付了16.6元", "恒九***刚刚支付了16.6元", "多鱼***刚刚支付了16.6元", "陆宇***刚刚支付了16.6元", "樱桃***刚刚支付了16.6元", "叮叮***刚刚支付了16.6元", "蜗牛***刚刚支付了16.6元", "芒果***刚刚支付了16.6元", "惠子***刚刚支付了16.6元", "云起***刚刚支付了16.6元", "一生***刚刚支付了16.6元", "阿宝***刚刚支付了16.6元", "星辰***刚刚支付了16.6元", "于思***刚刚支付了16.6元", "雨露***刚刚支付了16.6元", "杨乐***刚刚支付了16.6元", "淡泊***刚刚支付了16.6元", "富贵***刚刚支付了16.6元", "肖飞***刚刚支付了16.6元", "冉冉***刚刚支付了16.6元", "中医***刚刚支付了16.6元", "漂泊***刚刚支付了16.6元", "自律***刚刚支付了16.6元", "天道***刚刚支付了16.6元", "指针***刚刚支付了16.6元", "墨白***刚刚支付了16.6元", "李晓***刚刚支付了16.6元", "南通***刚刚支付了16.6元", "何必***刚刚支付了16.6元", "冰红***刚刚支付了16.6元", "一抹***刚刚支付了16.6元", "骄阳***刚刚支付了16.6元", "古林***刚刚支付了16.6元", "康韵***刚刚支付了16.6元", "阿拉***刚刚支付了16.6元", "秋水***刚刚支付了16.6元", "艺杰***刚刚支付了16.6元", "俗人***刚刚支付了16.6元", "菠萝***刚刚支付了16.6元", "誓言***刚刚支付了16.6元", "盖茨***刚刚支付了16.6元", "神乐***刚刚支付了16.6元", "哆咪***刚刚支付了16.6元", "心启***刚刚支付了16.6元", "金虹***刚刚支付了16.6元", "嘉颖***刚刚支付了16.6元", "孔华***刚刚支付了16.6元", "雨岸***刚刚支付了16.6元", "崽崽***刚刚支付了16.6元", "安凡***刚刚支付了16.6元", "沉默***刚刚支付了16.6元", "常思***刚刚支付了16.6元", "煮雨***刚刚支付了16.6元", "哈拉***刚刚支付了16.6元", "勿忘***刚刚支付了16.6元", "随性***刚刚支付了16.6元", "叶轩***刚刚支付了16.6元", "追梦***刚刚支付了16.6元", "达达***刚刚支付了16.6元", "惜缘***刚刚支付了16.6元", "逆光***刚刚支付了16.6元", "神农***刚刚支付了16.6元", "微醺***刚刚支付了16.6元", "晴天***刚刚支付了16.6元", "莫凡***刚刚支付了16.6元", "苏白***刚刚支付了16.6元", "青柠***刚刚支付了16.6元", "景虹***刚刚支付了16.6元", "阿慕***刚刚支付了16.6元", "无言***刚刚支付了16.6元", "苏陌***刚刚支付了16.6元", "忽晚***刚刚支付了16.6元", "两只***刚刚支付了16.6元", "番茄***刚刚支付了16.6元", "柒柒***刚刚支付了16.6元", "起蛮***刚刚支付了16.6元", "随风***刚刚支付了16.6元", "北巷***刚刚支付了16.6元", "易创***刚刚支付了16.6元", "福娃***刚刚支付了16.6元", "心若***刚刚支付了16.6元", "卡布***刚刚支付了16.6元", "星云***刚刚支付了16.6元", "蓝莲***刚刚支付了16.6元", "流年***刚刚支付了16.6元", "拾亿***刚刚支付了16.6元", "奶花***刚刚支付了16.6元", "立崖***刚刚支付了16.6元", "迎夏***刚刚支付了16.6元", "云安***刚刚支付了16.6元", "暖阳***刚刚支付了16.6元", "残留***刚刚支付了16.6元", "宋雨***刚刚支付了16.6元", "秋刀***刚刚支付了16.6元", "妖言***刚刚支付了16.6元", "舍予***刚刚支付了16.6元", "林间***刚刚支付了16.6元", "北冥***刚刚支付了16.6元", "安然***刚刚支付了16.6元", "花容***刚刚支付了16.6元", "芭比***刚刚支付了16.6元", "知乎***刚刚支付了16.6元", "奋斗***刚刚支付了16.6元", "果粒***刚刚支付了16.6元", "咕噜***刚刚支付了16.6元"];
+
+    $(".mask-click-b").click(function () {
+      $(".mask-box").show();
+
+    })
+
+    $(".mask-box-sm i").click(function () {
+      $(".mask-box").hide();
+    })
+
+    // 播报开始
+    var cur = 0;
+    var interTime = null;
+    function randomSortArray(arr) {
+      var stack = [];
+      while (arr.length) {
+        //Math.random()：返回 [0,1) 之间的一个随机数
+        var index = parseInt(Math.random() * arr.length);  // 利用数组长度生成随机索引值
+        stack.push(arr[index]);  // 将随机索引对应的数组元素添加到新的数组中
+        arr.splice(index, 1);  // 删除原数组中随机生成的元素
+      }
+      return stack;
+    }
+    // 将后台数据放到此数组内
+    var data = cons
+    data = randomSortArray(data);
+    //console.log(data);
+    function runInterval() {
+      interTime = setInterval(function () {
+        $('.toast-item').show();
+        if (cur >= data.length) {
+          cur = 0;
+        }
+        $('.toast-item').text(data[cur]);
+        cur++;
+      }, t);
+    }
+    runInterval();
+    // 播报结束
+
+
+
+  </script>
+
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      function audioAutoPlay() {
+        var audio = document.getElementById('audio');
+        audio.play();
+        document.addEventListener("WeixinJSBridgeReady", function () {
+          audio.play();
+        }, false);
+      }
+      audioAutoPlay();
+    });
+    //--创建触摸监听，当浏览器打开页面时，触摸屏幕触发事件，进行音频播放
+    document.addEventListener('touchstart', function () {
+      function audioAutoPlay() {
+        var audio = document.getElementById('audio');
+        audio.play();
+      }
+      audioAutoPlay();
+    });
+  </script>
+  <script>
+    // 控制弹窗显示[4](@ref)
+    function showModal() {
+      document.getElementById('modal').style.display = 'block';
+    }
+
+    // 关闭弹窗逻辑[2](@ref)
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    // 点击遮罩层关闭[3](@ref)
+    document.getElementById('modal').addEventListener('click', function (e) {
+      if (e.target === this) closeModal();
+    });
+  </script>
+  <script>
+    function showPayDialog() {
+      document.getElementById('payMask').style.display = 'block';
+      document.getElementById('payDialog').style.display = 'block';
+    }
+
+    function hidePayDialog() {
+      document.getElementById('payMask').style.display = 'none';
+      document.getElementById('payDialog').style.display = 'none';
+    }
+
+  </script>
+</body>
+
+</html>

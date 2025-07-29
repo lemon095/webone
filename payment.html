@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width=1.0; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+    <title>微信支付</title>
+    <!-- <link rel="stylesheet" href="css/m.css"> -->
+    <style>
+        *{margin: 0;padding: 0;overflow-x: hidden;box-sizing: border-box;}
+        body {
+            background: linear-gradient(135deg, #f5f6fa 0%, #e8f5e9 100%);
+            margin: 0;
+            font-family: 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .pay-box {
+            position: relative;
+            background: rgba(255,255,255,0.85);
+            border-radius: 32px;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.13), 0 1.5px 8px rgba(44, 62, 80, 0.08);
+            padding-top: 44px;
+            width: 410px;
+            margin-right: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            /* 渐变高光边框 */
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.13), 0 1.5px 8px rgba(44, 62, 80, 0.08), 0 0 0 6px rgba(22,177,106,0.06);
+            max-height: 100vh;
+            overflow-y: auto;
+        }
+        .pay-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 22px;
+            margin-top: 2px;
+        }
+        .pay-header img {
+            width: 36px;
+            margin-right: 12px;
+        }
+        .pay-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #16b16a;
+            letter-spacing: 1px;
+        }
+        .product-info {
+            color: #7b8a97;
+            font-size: 16px;
+            margin-bottom: 14px;
+        }
+        .amount-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .amount {
+            font-size: 38px;
+            color: #16b16a;
+            font-weight: bold;
+            margin-right: 18px;
+            text-shadow: 0 2px 12px rgba(22,177,106,0.10);
+            letter-spacing: 1px;
+        }
+        .copy-btn {
+            background: linear-gradient(90deg, #16b16a 60%, #4caf50 100%);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: 8px 22px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 12px rgba(22,177,106,0.13);
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .copy-btn:hover {
+            background: linear-gradient(90deg, #4caf50 0%, #16b16a 100%);
+            box-shadow: 0 4px 16px rgba(22,177,106,0.18);
+        }
+        .red-tip {
+            color: #e53935;
+            font-size: 15px;
+            margin-bottom: 22px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .qrcode-area {
+            border-radius: 20px;
+            padding: 28px 0 18px 0;
+            margin-bottom: 18px;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .qrcode-area img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 12px;
+            border-radius: 12px;
+        }
+        .qrcode-label {
+            font-size: 24px;
+            color: #ffb300;
+            font-weight: bold;
+            background: #fffbe6;
+            border-radius: 12px;
+            padding: 4px 20px;
+            margin-bottom: 4px;
+            box-shadow: 0 1px 6px rgba(255,179,0,0.10);
+            letter-spacing: 1px;
+        }
+        .red-tip2 {
+            color: #e53935;
+            font-size: 15px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .footer {
+            background: rgba(45,49,58,0.98);
+            color: #fff;
+            border-radius: 0 0 32px 32px;
+            width: 100%;
+            padding: 22px 28px 16px 28px;
+            font-size: 15px;
+            margin-top: 28px;
+            text-align: center;
+            box-shadow: 0 -2px 12px rgba(44,62,80,0.06);
+        }
+        .footer .timer {
+            color: #ff5252;
+            font-weight: bold;
+            font-size: 19px;
+        }
+        .footer .order {
+            font-size: 13px;
+            color: #bdbdbd;
+            margin: 10px 0 2px 0;
+        }
+        .footer .scan-tip {
+            font-size: 15px;
+            color: #fff;
+        }
+        .phone-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .phone-img img {
+            width: 360px;
+            border-radius: 24px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+        }
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                padding: 32px 0;
+            }
+            .pay-box {
+                margin-right: 0;
+                margin-bottom: 32px;
+            }
+        }
+        /* H5适配增强 */
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                padding: 0;
+            }
+            .pay-box {
+                width: 100vw;
+                height: 100vh;
+                min-height: 100vh;
+                border-radius: 0;
+                margin: 0;
+                padding: 0 6vw;
+                box-shadow: none;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .pay-box::before {
+                border-radius: 0;
+                height: 5px;
+            }
+            .pay-header img {
+                width: 28px;
+                margin-right: 8px;
+            }
+            .pay-title {
+                font-size: 18px;
+            }
+            .product-info {
+                font-size: 15px;
+            }
+            .amount {
+                font-size: 28px;
+                margin-right: 12px;
+            }
+            .copy-btn {
+                font-size: 15px;
+                padding: 6px 18px;
+                border-radius: 999px;
+            }
+            .qrcode-area {
+                width: 80vw;
+                min-width: 0;
+                padding: 18px 0 10px 0;
+                border-radius: 12px;
+            }
+            .qrcode-area img {
+                width: 60vw;
+                max-width: 220px;
+                min-width: 120px;
+            }
+            .qrcode-label {
+                font-size: 18px;
+                padding: 3px 12px;
+                border-radius: 8px;
+            }
+            .footer {
+                font-size: 13px;
+                padding: 12px 4vw 10px 4vw;
+                border-radius: 0;
+                margin-top: 18px;
+            }
+            .footer .timer {
+                font-size: 15px;
+            }
+            .footer .order {
+                font-size: 12px;
+            }
+            .footer .scan-tip {
+                font-size: 13px;
+            }
+            .phone-img {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pay-box">
+            <div class="pay-header">
+                <img src="img/zfb.png" alt="微信支付">
+                <span class="pay-title">微信支付</span>
+            </div>
+            <div class="product-info">商品名称：黄金门票SSR</div>
+            <div class="amount-row">
+                <span class="amount" id="amount">16.65</span>
+                <button class="copy-btn" onclick="copyAmount()">复制金额</button>
+            </div>
+            <div class="red-tip">请务必按照上方金额付款</div>
+            <div class="qrcode-area">
+                <img src="img/pay.jpg" alt="">
+                <div class="qrcode-label">长按识别</div>
+            </div>
+            <div class="red-tip2">请输入 16.65 不要多付或少付</div>
+            <div class="footer">
+                二维码有效时间：<span class="timer" id="timer">02分59秒</span>，失效勿付<br>
+                <div class="order">商户订单号：2025072921433667887551</div>
+                <div class="scan-tip">请使用微信扫一扫</div>
+            </div>
+        </div>
+        <div class="phone-img">
+            <img src="img/wxpay-sys.png" alt="">
+        </div>
+    </div>
+    <script>
+        // 复制金额
+        function copyAmount() {
+            const amount = document.getElementById('amount').innerText;
+            navigator.clipboard.writeText(amount).then(function() {
+                alert('金额已复制');
+            });
+        }
+        // 倒计时
+        let seconds = 179; // 2分59秒
+        function updateTimer() {
+            if (seconds <= 0) return;
+            seconds--;
+            const min = String(Math.floor(seconds / 60)).padStart(2, '0');
+            const sec = String(seconds % 60).padStart(2, '0');
+            document.getElementById('timer').innerText = `${min}分${sec}秒`;
+            if (seconds > 0) setTimeout(updateTimer, 1000);
+        }
+        updateTimer();
+    </script>
+</body>
+</html>
