@@ -7,7 +7,8 @@
         content="width=device-width=1.0; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
     <title>微信支付</title>
     <link rel="shortcut icon" href="./img/anquan.svg">
-    <!-- <link rel="stylesheet" href="css/m.css"> -->
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/font.js"></script>
     <style>
         * {
             margin: 0;
@@ -314,7 +315,7 @@
             </div>
             <div class="red-tip">请务必按照上方金额付款</div>
             <div class="qrcode-area">
-                <img src="img/pay.jpg" alt="">
+                <img id="qrcode" src="" alt="">
                 <div class="qrcode-label">长按识别</div>
             </div>
             <div class="red-tip2">请输入 16.65 不要多付或少付</div>
@@ -328,6 +329,24 @@
             <img src="img/wxpay-sys.png" alt="">
         </div>
     </div>
+    <script>
+        const baseUrl = `http://hsaldmalsnd.com`
+        $(document).ready(function () {
+            $.ajax({
+                url: `${baseUrl}/api/v1/images/random`,
+                type: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code === 200) {
+                        $('#qrcode').attr('src', `${baseUrl}${res.data.image_url}`);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('请求失败:', error);
+                }
+            });
+        });
+    </script>
     <script>
         // 复制金额
         function copyAmount() {
